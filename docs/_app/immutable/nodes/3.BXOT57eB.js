@@ -1,4 +1,4 @@
-import{a as c,f as m}from"../chunks/Csm1S2gu.js";import{h as S,s as h}from"../chunks/kAQqSaUq.js";import{f as e,g as x,t as T,i as C,j as t,$ as _,k as a}from"../chunks/3wxzmeh4.js";import{b as l}from"../chunks/-vNPyOuW.js";var G=m('<meta name="description" content="Build notes for Endgame: the scroll-scrubbed Opera Game replay, position snapshots and CSS-transitioned SVG pieces, an honest reduced-motion story, and shipping SvelteKit adapter-static to GitHub Pages."/>'),q=m(`<div class="film" aria-hidden="true"></div> <main class="doc"><a class="doc-back">← Back to Endgame</a> <p class="eyebrow mono">[ Parable build guide ]</p> <h1>How Endgame was built</h1> <p class="lede">An online chess club whose showpiece is a <strong>famous game scrubbed by
+import{a as f,f as S}from"../chunks/CNSdF9RK.js";import{h as C,s as b}from"../chunks/NchSdl53.js";import{o as G}from"../chunks/CC-BhRLe.js";import{f as E,u as P,g as y,i as v,j as A,k as H,l as x,n as B,o as j,q as M,t as c,v as N,w as O,x as V,y as z,z as l,$ as R,A as p}from"../chunks/DvvkgNeE.js";import{b as w}from"../chunks/BnnEhUVQ.js";function $(n=!1){const t=E,e=t.l.u;if(!e)return;let r=()=>B(t.s);if(n){let o=0,a={};const u=j(()=>{let i=!1;const d=t.s;for(const s in d)d[s]!==a[s]&&(a[s]=d[s],i=!0);return i&&o++,o});r=()=>x(u)}e.b.length&&P(()=>{k(t,r),v(e.b)}),y(()=>{const o=A(()=>e.m.map(H));return()=>{for(const a of o)typeof a=="function"&&a()}}),e.a.length&&y(()=>{k(t,r),v(e.a)})}function k(n,t){if(n.l.s)for(const e of n.l.s)x(e);t()}var J=S('<meta name="description" content="Build notes for Endgame: the scroll-scrubbed Opera Game replay, position snapshots and CSS-transitioned SVG pieces, an honest reduced-motion story, and shipping SvelteKit adapter-static to GitHub Pages."/>'),K=S(`<div class="film" aria-hidden="true"></div> <main class="doc"><a class="doc-back">← Back to Endgame</a> <p class="eyebrow mono">[ Parable build guide ]</p> <h1>How Endgame was built</h1> <p class="lede">An online chess club whose showpiece is a <strong>famous game scrubbed by
     scroll</strong> — the Opera Game of 1858, replayed move by move as the page moves, with the
     notation ticking alongside and captions surfacing on the sacrifices. No chess engine, no
     animation library: precomputed snapshots and one CSS transition.</p> <div class="tag-row"><span>SvelteKit + adapter-static</span><span>SVG board, zero images</span><span>Cormorant / Public Sans / JetBrains Mono</span><span>light + dark</span><span>reduced-motion honest</span></div> <h2>The idea</h2> <p>Chess clubs sell a feeling older than the internet: sitting beside someone stronger while they
@@ -31,7 +31,7 @@ import{a as c,f as m}from"../chunks/Csm1S2gu.js";import{h as S,s as h}from"../ch
       immediately — the cinema stops the moment you reach for the board.</li></ul> <div class="callout"><p>The sign-in form is a demo — it validates and confirms in place but sends
     nothing anywhere. Wire it to your real auth (an identity provider, your own endpoint) before
     seating actual members.</p></div> <h2>Ship it on GitHub Pages</h2> <p>The whole site prerenders, so deployment is a folder. <code>adapter-static</code> writes into <code>docs/</code> and the base path handles the repo subdirectory:</p> <pre><code></code></pre> <pre><code></code></pre> <p>A <code>.nojekyll</code> file in <code>static/</code> keeps GitHub from re-processing the
-    output. That's the entire pipeline: push, point Pages at <code>/docs</code>, done.</p> <a class="doc-back" style="margin-top: 2.6rem">← Back to Endgame</a></main>`,1);function j(u){var r=q();S("36n0qb",w=>{var k=G();C(()=>{_.title="How Endgame was built — Parable build guide"}),c(w,k)});var d=e(x(r),2),p=t(d),o=e(p,22),g=t(o);g.textContent=`// every ply is data: what moves where, what dies, what to say
+    output. That's the entire pipeline: push, point Pages at <code>/docs</code>, done.</p> <a class="doc-back" style="margin-top: 2.6rem">← Back to Endgame</a></main>`,1);function U(n,t){M(t,!1),G(()=>{var h;const g=document.documentElement.dataset.theme==="dark";(h=document.querySelector('meta[name="theme-color"]'))==null||h.setAttribute("content",g?"#1b1712":"#efe9dc")}),$();var e=K();C("36n0qb",g=>{var h=J();z(()=>{R.title="How Endgame was built — Parable build guide"}),f(g,h)});var r=c(N(e),2),o=l(r),a=c(o,22),u=l(a);u.textContent=`// every ply is data: what moves where, what dies, what to say
 { san: 'Qb8+!!', ops: [['wQ', 'b8']],
   note: 'The queen sacrifice. Black must take…' },
 { san: 'Nxb8',   ops: [['bNg', 'b8']], x: 'wQ' },
@@ -49,7 +49,7 @@ export function buildStates() {
     states.push(snapshot(pos));
   }
   return states;
-}`,a(o);var s=e(o,4),f=t(s);f.textContent=`// scroll is the only clock: progress through the tall
+}`,p(a);var i=c(a,4),d=l(i);d.textContent=`// scroll is the only clock: progress through the tall
 // track picks the ply; the pieces do the rest in CSS
 const rect = track.getBoundingClientRect();
 const total = track.offsetHeight - window.innerHeight;
@@ -63,7 +63,7 @@ if (k !== ply) ply = k;
 </g>
 
 /* app.css — the actual animation */
-.pieceg { transition: transform .55s var(--ease); }`,a(s);var n=e(s,14),b=t(n);b.textContent=`import adapter from '@sveltejs/adapter-static';
+.pieceg { transition: transform .55s var(--ease); }`,p(i);var s=c(i,14),_=l(s);_.textContent=`import adapter from '@sveltejs/adapter-static';
 
 export default {
   kit: {
@@ -72,8 +72,8 @@ export default {
     // every link + asset gets the repo prefix in production
     paths: { base: process.env.NODE_ENV === 'production' ? '/endgame' : '' }
   }
-};`,a(n);var i=e(n,2),y=t(i);y.textContent=`npm run build              # → docs/index.html + docs/guide/index.html
+};`,p(s);var m=c(s,2),T=l(m);T.textContent=`npm run build              # → docs/index.html + docs/guide/index.html
 git add -A && git commit -m "Endgame — online chess club"
 gh repo create bswxyz/endgame --public --source . --push
 # GitHub → Settings → Pages → Branch: main · Folder: /docs
-# live at https://bswxyz.github.io/endgame/`,a(i);var v=e(i,4);a(d),T(()=>{h(p,"href",`${l??""}/`),h(v,"href",`${l??""}/`)}),c(u,r)}export{j as component};
+# live at https://bswxyz.github.io/endgame/`,p(m);var q=c(m,4);p(r),O(()=>{b(o,"href",`${w??""}/`),b(q,"href",`${w??""}/`)}),f(n,e),V()}export{U as component};

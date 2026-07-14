@@ -32,6 +32,7 @@
   let track;
   let tickerEl;
   let timer = 0;
+  let lastTarget = -1;            // scrollY the last scrollToPly asked for
 
   const pieces = $derived(START.map((p) => ({ ...p, ...states[ply][p.id] })));
   const hl = $derived(hls[ply]);
@@ -74,7 +75,8 @@
     const top = window.scrollY + track.getBoundingClientRect().top;
     const total = track.offsetHeight - window.innerHeight;
     if (total <= 0) { ply = k; return; }
-    window.scrollTo({ top: top + (k / N) * total + 1, behavior: 'instant' });
+    lastTarget = top + (k / N) * total + 1;
+    window.scrollTo({ top: lastTarget, behavior: 'instant' });
   }
 
   function step(d) {
@@ -85,6 +87,7 @@
   function togglePlay() {
     if (playing) { stopPlay(); return; }
     playing = true;
+    lastTarget = window.scrollY;   // any scroll away from here is the user's
     if (ply >= N) {
       // restart from the top — hard jump, no 33-piece glide
       teleport = true;
@@ -117,20 +120,34 @@
       const k = Math.round(p * N);
       if (k !== ply) ply = k;
     };
-    const onScroll = () => { if (!raf) raf = requestAnimationFrame(drive); };
+    const onScroll = () => {
+      // a scroll we didn't ask for (scrollbar drag, find-in-page…) — cinema over
+      if (playing && Math.abs(window.scrollY - lastTarget) > 2) stopPlay();
+      if (!raf) raf = requestAnimationFrame(drive);
+    };
+    const onResize = () => { if (!raf) raf = requestAnimationFrame(drive); };
     const onInput = () => stopPlay();   // the user grabbed the wheel — cinema over
+    const SCROLL_KEYS = new Set([' ', 'PageUp', 'PageDown', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Home', 'End']);
+    const onKey = (e) => {
+      if (!SCROLL_KEYS.has(e.key)) return;
+      // keys aimed at a control (e.g. Space on the play button) aren't scrolling
+      if (e.target instanceof Element && e.target.closest('button, a, input, select, textarea')) return;
+      stopPlay();
+    };
 
     addEventListener('scroll', onScroll, { passive: true });
-    addEventListener('resize', onScroll);
+    addEventListener('resize', onResize);
     addEventListener('wheel', onInput, { passive: true });
     addEventListener('touchstart', onInput, { passive: true });
+    addEventListener('keydown', onKey);
     drive();
 
     return () => {
       removeEventListener('scroll', onScroll);
-      removeEventListener('resize', onScroll);
+      removeEventListener('resize', onResize);
       removeEventListener('wheel', onInput);
       removeEventListener('touchstart', onInput);
+      removeEventListener('keydown', onKey);
       stopPlay();
       if (raf) cancelAnimationFrame(raf);
     };
@@ -164,10 +181,12 @@
         <div class="study-side">
           <p class="study-note">{caption}</p>
 
-          <ol class="ticker mono" bind:this={tickerEl}
+          <!-- the score column scrolls, so keyboard users need to be able to reach it -->
+          <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
+          <ol class="ticker mono" bind:this={tickerEl} tabindex="0"
             aria-label="Full notation — Morphy versus Duke Karl of Brunswick and Count Isouard, Paris 1858">
             {#each PLIES as m, i}
-              <li class:on={i === ply - 1} class:past={i < ply - 1}>
+              <li class:on={i === ply - 1} class:past={i < ply - 1} aria-current={i === ply - 1 ? 'step' : undefined}>
                 <span class="tick-n">{moveLabel(i)}</span><span class="tick-san">{m.san}</span>
               </li>
             {/each}

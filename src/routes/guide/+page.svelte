@@ -1,5 +1,14 @@
 <script>
+  import { onMount } from 'svelte';
   import { base } from '$app/paths';
+
+  // keep the browser chrome in step with the applied theme (same as the main page)
+  onMount(() => {
+    const dark = document.documentElement.dataset.theme === 'dark';
+    document
+      .querySelector('meta[name="theme-color"]')
+      ?.setAttribute('content', dark ? '#1b1712' : '#efe9dc');
+  });
 
   const snipData = `// every ply is data: what moves where, what dies, what to say
 { san: 'Qb8+!!', ops: [['wQ', 'b8']],
