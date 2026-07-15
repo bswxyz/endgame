@@ -1,4 +1,37 @@
-# Endgame — online chess club, study & trainer
+<!-- parable:beautified -->
+<div align="center">
+
+<h1>Endgame</h1>
+
+<p><strong>Online chess club — a board replays a classic miniature as you scroll, notation ticker keeping pace.</strong></p>
+
+<p>
+  <a href="https://bswxyz.github.io/endgame/"><img alt="Live demo" src="https://img.shields.io/badge/demo-live-8b5cf6?style=flat-square&labelColor=1a1a1a"></a>
+  <img alt="Family" src="https://img.shields.io/badge/family-Parable-ec4899?style=flat-square&labelColor=1a1a1a">
+  <img alt="Stack" src="https://img.shields.io/badge/stack-SvelteKit-f5a623?style=flat-square&labelColor=1a1a1a">
+  <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-22c55e?style=flat-square&labelColor=1a1a1a"></a>
+</p>
+
+<p>
+  <a href="https://bswxyz.github.io/endgame/"><b>Live demo</b></a>
+  &nbsp;·&nbsp;
+  <a href="https://bswxyz.github.io/endgame/guide/">Build notes</a>
+  &nbsp;·&nbsp;
+  <a href="https://parable-three.vercel.app/templates">More templates</a>
+</p>
+
+<a href="https://bswxyz.github.io/endgame/">
+  <img src=".github/preview.jpg" alt="Endgame — live preview" width="100%">
+</a>
+
+</div>
+
+**Use this template** — copy the source into a new project:
+
+```bash
+npx degit bswxyz/endgame my-app
+```
+
 
 A design-showcase website template from the **Parable** collection. Endgame is a fictional online
 chess club for people who would rather understand ten moves than memorise a thousand. Its
